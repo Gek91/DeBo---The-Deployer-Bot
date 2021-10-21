@@ -136,7 +136,11 @@ public class PubSubChatFunction implements BackgroundFunction<PubSubMessage> {
 	    section.setWidgets(Arrays.asList(
 	    		new WidgetMarkup().setKeyValue(new KeyValue().setTopLabel("Project id").setContent(buildInfo.projectId)),
 	    		new WidgetMarkup().setKeyValue(new KeyValue().setTopLabel("Trigger Name").setContent(trigger.isPresent() ? trigger.get().getName() : " - ")),
-	    		new WidgetMarkup().setKeyValue(new KeyValue().setTopLabel("Branch Name").setContent(trigger.isPresent() ? trigger.get().getTriggerTemplate().getBranchName() : " - ")),
+	    		new WidgetMarkup().setKeyValue(new KeyValue().setTopLabel("Branch Name").setContent(trigger.isPresent() ? 
+	    				(trigger.get().getTriggerTemplate() != null ? 
+	    						trigger.get().getTriggerTemplate().getBranchName() : 
+	    						" - ") :
+	    				" - ")),
 	    		new WidgetMarkup().setKeyValue(new KeyValue().setTopLabel("Status").setContent(buildInfo.status)),
 	    		new WidgetMarkup().setKeyValue(new KeyValue().setTopLabel("Start Time").setContent(buildInfo.startTime != null ? buildInfo.startTime : " - ")),
 	    		new WidgetMarkup().setKeyValue(new KeyValue().setTopLabel("Finish Time").setContent(buildInfo.endTime != null ? buildInfo.endTime : " - "))
